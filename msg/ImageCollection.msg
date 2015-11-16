@@ -1,0 +1,8 @@
+sensor_msgs/Image cam1left_img
+sensor_msgs/Image cam1right_img
+sensor_msgs/Image cam2left_img
+sensor_msgs/Image cam2right_img
+sensor_msgs/CameraInfo cam1left_info
+sensor_msgs/CameraInfo cam1right_info
+sensor_msgs/CameraInfo cam2left_info
+sensor_msgs/CameraInfo cam2right_info
