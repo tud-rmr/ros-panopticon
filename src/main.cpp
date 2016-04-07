@@ -20,12 +20,12 @@ int main(int argc, char **argv) {
 
   /* Wait for the user to lay down the world marker*/
   ROS_INFO("%s%sPut the world marker on the floor and press [ENTER] to continue!", "\33[", "32m");
-  cin.clear();
-  cin.ignore();
+  // cin.clear();
+  // cin.ignore();
 
-  ROS_INFO("Waiting for world frame");
-  panopticon.waitForWorldFrame("/panopticon/camera4/transform");
-  ROS_INFO("Found world frame!");
+  // ROS_INFO("Waiting for world frame");
+  // panopticon.waitForWorldFrame("/panopticon/camera4/transform");
+  // ROS_INFO("Found world frame!");
 
   /* Event loop*/
 
