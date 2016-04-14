@@ -2,6 +2,8 @@
 
 #include <ros/topic.h>
 
+#include <boost/algorithm/string/predicate.hpp>
+
 using std::string;
 
 namespace rmr {
