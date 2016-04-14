@@ -16,15 +16,30 @@ PanopticonNode::PanopticonNode(ros::NodeHandle _nh) {
   subTransformCam2 = nh.subscribe("camera2/transform", 1000, &PanopticonNode::cameraTransformCallback, this);
   subTransformCam3 = nh.subscribe("camera3/transform", 1000, &PanopticonNode::cameraTransformCallback, this);
 
-  subPoseCam0 = nh.subscribe("camera0/pose", 1000, &PanopticonNode::cameraPoseCallback, this);
-  subPoseCam1 = nh.subscribe("camera1/pose", 1000, &PanopticonNode::cameraPoseCallback, this);
-  subPoseCam2 = nh.subscribe("camera2/pose", 1000, &PanopticonNode::cameraPoseCallback, this);
-  subPoseCam3 = nh.subscribe("camera3/pose", 1000, &PanopticonNode::cameraPoseCallback, this);
+  subPoseCam0.subscribe(nh, "camera0/pose", 100);
+  subPoseCam1.subscribe(nh, "camera1/pose", 100);
+  subPoseCam2.subscribe(nh, "camera2/pose", 100);
+  subPoseCam3.subscribe(nh, "camera3/pose", 100);
+
+  tfFilterPoseCam0 = new tf::MessageFilter<geometry_msgs::PoseStamped>(subPoseCam0, tfListener, "usb_cam0", 100);
+  tfFilterPoseCam1 = new tf::MessageFilter<geometry_msgs::PoseStamped>(subPoseCam1, tfListener, "usb_cam1", 100);
+  tfFilterPoseCam2 = new tf::MessageFilter<geometry_msgs::PoseStamped>(subPoseCam2, tfListener, "usb_cam2", 100);
+  tfFilterPoseCam3 = new tf::MessageFilter<geometry_msgs::PoseStamped>(subPoseCam3, tfListener, "usb_cam3", 100);
+
+  tfFilterPoseCam0->registerCallback(&PanopticonNode::cameraPoseCallback, this);
+  tfFilterPoseCam1->registerCallback(&PanopticonNode::cameraPoseCallback, this);
+  tfFilterPoseCam2->registerCallback(&PanopticonNode::cameraPoseCallback, this);
+  tfFilterPoseCam3->registerCallback(&PanopticonNode::cameraPoseCallback, this);
 
   pubPose = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("pose", 1000);
 }
 
-PanopticonNode::~PanopticonNode() {}
+PanopticonNode::~PanopticonNode() {
+  delete tfFilterPoseCam0;
+  delete tfFilterPoseCam1;
+  delete tfFilterPoseCam2;
+  delete tfFilterPoseCam3;
+}
 
 void PanopticonNode::waitForWorldFrame(const string& topic) {
   boost::shared_ptr<geometry_msgs::TransformStamped const> msgPtr;
@@ -64,6 +79,7 @@ void PanopticonNode::cameraTransformCallback(const geometry_msgs::TransformStamp
   } else if(frameName == "center") {
     if(parentName == "usb_cam0") {
       tf::StampedTransform st;
+      st.stamp_ = ros::Time::now();
       tf::transformStampedMsgToTF(*msg, st);
       tfBroadcaster.sendTransform(st);  
     } else {
@@ -74,15 +90,17 @@ void PanopticonNode::cameraTransformCallback(const geometry_msgs::TransformStamp
 
 void PanopticonNode::cameraPoseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg) {
   string frameName = msg->header.frame_id;
-  /*
-  if (frameName != "map" && frameName != "raw_center") {
-    geometry_msgs::PoseStamped markerInWorldMsg;
-    tfListener.waitForTransform("map", frameName, ros::Time::now(), ros::Duration(3.0));
-    tfListener.transformPose("map", *msg, markerInWorldMsg);
-    geometry_msgs::PoseWithCovarianceStamped poseWithCovMsg = poseToPoseWithCovariance(*msg);
-    pubPose.publish(poseWithCovMsg);
+
+  if (frameName != "map" && frameName != "center") {
+    try{
+      geometry_msgs::PoseStamped markerInWorldMsg;
+      tfListener.transformPose("map", ros::Time::now(), *msg, "map", markerInWorldMsg);
+      geometry_msgs::PoseWithCovarianceStamped poseWithCovMsg = poseToPoseWithCovariance(*msg);
+      pubPose.publish(poseWithCovMsg);    
+    } catch (tf::TransformException ex) {
+      ROS_ERROR("%s",ex.what());
+    }
   }
-  */
 }
 
 geometry_msgs::PoseWithCovarianceStamped 

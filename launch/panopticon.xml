@@ -56,7 +56,7 @@
 
 	<!-- Start main node -->
 
-	
+	<node pkg="panopticon" type="panopticon_node" name="panopticon" output="screen" />	
 
 	<!-- Start Aruco nodes -->
 
