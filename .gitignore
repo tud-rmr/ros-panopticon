@@ -2,6 +2,7 @@ build/
 bin/
 lib/
 msg_gen/
+data/
 srv_gen/
 msg/*Action.msg
 msg/*ActionFeedback.msg
@@ -37,6 +38,8 @@ qtcreator-*
 /planning/cfg
 /planning/docs
 /planning/src
+
+*.bag
 
 *~
 
