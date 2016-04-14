@@ -7,7 +7,7 @@
     <param name="image_height" value="480" />
     <param name="pixel_format" value="mjpeg" />
     <param name="camera_frame_id" value="usb_cam$(arg device_id)" />
-    <param name="framerate" value="15" />
+    <param name="framerate" value="10" />
   </node>
   <!--
   <node name="image_view$(arg device_id)" pkg="image_view" type="image_view" respawn="false" output="screen">

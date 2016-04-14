@@ -18,13 +18,20 @@ class PanopticonNode {
  private:
   ros::NodeHandle nh;
 
-  ros::Subscriber subCam4;
-  ros::Subscriber subCam5;
+  ros::Subscriber subCam0;
+  ros::Subscriber subCam1;
+  ros::Subscriber subCam2;
+  ros::Subscriber subCam3;
 
   tf::TransformBroadcaster br;
 
   geometry_msgs::TransformStamped origin;
 
-  void cameraCallback(const geometry_msgs::TransformStamped::ConstPtr& msg);
+  void cameraCallback(const geometry_msgs::TransformStamped::ConstPtr& msg, std::string suffix);
+
+  void cameraCallback0(const geometry_msgs::TransformStamped::ConstPtr& msg);
+  void cameraCallback1(const geometry_msgs::TransformStamped::ConstPtr& msg);
+  void cameraCallback2(const geometry_msgs::TransformStamped::ConstPtr& msg);
+  void cameraCallback3(const geometry_msgs::TransformStamped::ConstPtr& msg);
 };
 }

@@ -40,16 +40,19 @@
 	</include>
 
 	<include file="$(find panopticon)/launch/usb_cam_by_id.xml">
-		<arg name="device_id" value="$(arg c2)" />
+		<arg name="device_id" value="$(arg c4)" />
 	</include>
 
 	<include file="$(find panopticon)/launch/usb_cam_by_id.xml">
 		<arg name="device_id" value="$(arg c3)" />
 	</include>
 
+<!--
 	<include file="$(find panopticon)/launch/usb_cam_by_id.xml">
 		<arg name="device_id" value="$(arg c4)" />
 	</include>	
+
+-->
 
 	<!-- Start main node -->
 
@@ -62,15 +65,17 @@
 	</include>
 
 	<include file="$(find panopticon)/launch/aruco_multi.xml">
-		<arg name="camera_id" value="$(arg c2)" />
+		<arg name="camera_id" value="$(arg c4)" />
 	</include>
 
 	<include file="$(find panopticon)/launch/aruco_multi.xml">
 		<arg name="camera_id" value="$(arg c3)" />
 	</include>
 
+<!--
 	<include file="$(find panopticon)/launch/aruco_multi.xml">
 		<arg name="camera_id" value="$(arg c4)" />
 	</include>
+-->
 
 </launch>
