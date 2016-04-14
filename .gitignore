@@ -39,6 +39,9 @@ qtcreator-*
 /planning/docs
 /planning/src
 
+frames.gv
+frames.pdf
+
 *.bag
 
 *~

@@ -55,7 +55,8 @@ include_directories(
 
 set(${PROJECT_NAME}_SOURCES
     src/main.cpp
-    src/panopticon_node.cpp
+    src/panopticon_transformer.cpp
+    src/panopticon_poser.cpp
 )
 
 ## Declare a C++ executable
@@ -96,6 +97,6 @@ target_link_libraries(panopticon_node
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 install(FILES
-    launch/panopticon.launch
+    launch/panopticon.xml
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

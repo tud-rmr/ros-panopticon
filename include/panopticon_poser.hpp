@@ -8,29 +8,18 @@
 
 #include <tf/message_filter.h>
 #include <tf/transform_listener.h>
-#include <tf/transform_broadcaster.h>
 
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <geometry_msgs/TransformStamped.h>
 
 namespace rmr {
-class PanopticonNode {
+class PanopticonPoser {
  public:
-  PanopticonNode(ros::NodeHandle _nh);
-  ~PanopticonNode();
-
-  void waitForWorldFrame(const std::string& topic);
-  void spinOnce();
+  PanopticonPoser(ros::NodeHandle _nh);
+  ~PanopticonPoser();
 
  private:
   ros::NodeHandle nh;
-
-  /* Transform subs */
-
-  ros::Subscriber subTransformCam0;
-  ros::Subscriber subTransformCam1;
-  ros::Subscriber subTransformCam2;
-  ros::Subscriber subTransformCam3;
 
   /* Pose subs */
   message_filters::Subscriber<geometry_msgs::PoseStamped> subPoseCam0;
@@ -45,17 +34,12 @@ class PanopticonNode {
 
   ros::Publisher pubPose;
 
-  tf::TransformBroadcaster tfBroadcaster;
   tf::TransformListener tfListener;
 
-  geometry_msgs::TransformStamped origin;
-
   /* Callbacks */
-  void cameraTransformCallback(const geometry_msgs::TransformStamped::ConstPtr& msg);
   void cameraPoseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg);
 
   /* Helper methods */
   geometry_msgs::PoseWithCovarianceStamped poseToPoseWithCovariance(const geometry_msgs::PoseStamped msg);
-  void publishInversedTransformation(const geometry_msgs::TransformStamped::ConstPtr& msg);
 };
 }

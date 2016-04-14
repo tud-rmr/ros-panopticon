@@ -4,7 +4,8 @@
 #include <ros/ros.h>
 #include <ros/time.h>
 
-#include "panopticon_node.hpp"
+#include "panopticon_transformer_node.hpp"
+#include "panopticon_poser_node.hpp"
 
 using std::cin;
 using std::string;
@@ -16,7 +17,9 @@ int main(int argc, char **argv) {
 
   ROS_INFO("Starting panopticon node");
   ros::NodeHandle nh("panopticon");
-  PanopticonNode panopticon(nh);
+
+  PanopticonTransformer panopticonTransformer(nh);
+  PanopticonPoser panopticonPoser(nh);
 
   /* Wait for the user to lay down the world marker*/
   ROS_INFO("%s%sPut the world marker on the floor and press [ENTER] to continue!", "\33[", "32m");
