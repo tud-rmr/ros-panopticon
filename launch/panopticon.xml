@@ -75,5 +75,8 @@
 		<arg name="camera_id" value="$(arg c2)" />
 	</include>
 
+	<!-- Start robot_localization nodes -->
+
+
 
 </launch>
