@@ -57,6 +57,7 @@ set(${PROJECT_NAME}_SOURCES
     src/main.cpp
     src/panopticon_transformer.cpp
     src/panopticon_poser.cpp
+    # src/panopticon_viz.cpp
 )
 
 ## Declare a C++ executable

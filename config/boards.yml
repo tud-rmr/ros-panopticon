@@ -2,5 +2,5 @@
 ar_sys_boards:
    - { name:"map", path:"boardconfig_122.yml", marker_size:0.2 }
    - { name:"center", path:"boardconfig_152.yml", marker_size:0.2 }
-   - { name:"raw_board_3", path:"boardconfig_344.yml", marker_size:0.2 }
-   - { name:"raw_board_4", path:"boardconfig_591.yml", marker_size:0.2 }
+   - { name:"marker344", path:"boardconfig_344.yml", marker_size:0.2 }
+   - { name:"marker591", path:"boardconfig_591.yml", marker_size:0.2 }

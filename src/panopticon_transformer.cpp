@@ -11,6 +11,8 @@ namespace rmr {
 PanopticonTransformer::PanopticonTransformer(ros::NodeHandle _nh) {
   nh = _nh;
 
+  frameContainingMap = "usb_cam0";
+
   subTransformCam0 = nh.subscribe("camera0/transform", 1000, &PanopticonTransformer::cameraTransformCallback, this);
   subTransformCam1 = nh.subscribe("camera1/transform", 1000, &PanopticonTransformer::cameraTransformCallback, this);
   subTransformCam2 = nh.subscribe("camera2/transform", 1000, &PanopticonTransformer::cameraTransformCallback, this);
@@ -38,10 +40,10 @@ void PanopticonTransformer::cameraTransformCallback(const geometry_msgs::Transfo
   string frameName = msg->child_frame_id;
   string parentName = msg->header.frame_id;
 
-  if(frameName == "map" && parentName == "usb_cam0") {
+  if(frameName == "map" && parentName == frameContainingMap) {
     publishInversedTransformation(msg);
   } else if(frameName == "center") {
-    if(parentName == "usb_cam0") {
+    if(parentName == frameContainingMap) {
       tf::StampedTransform st;
       st.stamp_ = ros::Time::now();
       tf::transformStampedMsgToTF(*msg, st);

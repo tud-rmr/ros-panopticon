@@ -30,6 +30,8 @@ class PanopticonTransformer {
 
   geometry_msgs::TransformStamped origin;
 
+  std::string frameContainingMap;
+
   /* Callbacks */
   void cameraTransformCallback(const geometry_msgs::TransformStamped::ConstPtr& msg);
 
