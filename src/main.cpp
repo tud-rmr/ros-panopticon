@@ -4,8 +4,8 @@
 #include <ros/ros.h>
 #include <ros/time.h>
 
-#include "panopticon_transformer_node.hpp"
-#include "panopticon_poser_node.hpp"
+#include "panopticon_transformer.hpp"
+#include "panopticon_poser.hpp"
 
 using std::cin;
 using std::string;
