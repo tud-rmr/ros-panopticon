@@ -34,6 +34,7 @@
 		<arg name="cam_index" value="$(arg c4)" />
 	</include>
 
+ -->
 
 	<include file="$(find panopticon)/launch/usb_cam_by_id.xml">
 		<arg name="device_id" value="$(arg c1)" />
@@ -51,8 +52,6 @@
 	<include file="$(find panopticon)/launch/usb_cam_by_id.xml">
 		<arg name="device_id" value="$(arg c2)" />
 	</include>	
--->		
-
 
 	<!-- Start main node -->
 
