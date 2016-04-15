@@ -51,3 +51,7 @@ frames.pdf
 
 # Catkin custom files
 CATKIN_IGNORE
+
+_build
+_static
+_templates
