@@ -2,6 +2,8 @@
 
 This package is used to recognize robotinos with markers on their top. The infrastructure in which it will be used has four ceiling cameras which overlapping field of view. Panopticon detecs the robots and gives the position in a global world frame. 
 
+![alt text](https://github.com/Rentier/ros-panopticon/blob/master/docs/images/cameras_rviz.png "Camera setup in rviz")
+
 ## Run
 
 	roslaunch launch/panopticon.launch
