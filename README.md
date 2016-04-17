@@ -1,6 +1,6 @@
 # ros-panopticon
 
-This package is used to recognize robotinos with markers on their top. The infrastructure in which it will be used has four ceiling cameras which overlapping field of view. Panopticon detecs the robots and gives the position in a global world frame. 
+This package is used to recognize robots with markers on their top. The infrastructure in which it will be used has four ceiling cameras which overlapping field of view. Panopticon detects the markers and computes their respective positions in a global world frame. 
 
 ## Run
 
