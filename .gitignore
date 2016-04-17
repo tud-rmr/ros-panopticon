@@ -55,3 +55,4 @@ CATKIN_IGNORE
 _build
 _static
 _templates
+_build_html
