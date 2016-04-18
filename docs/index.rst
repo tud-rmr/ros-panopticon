@@ -11,11 +11,11 @@ Contents:
    arch
    installing
    usage
-   configuration
    scripts
    todo
 
 .. figure:: images/cameras_rviz.png
+	:align: center
 
 	Overview of the camera and frame setup. The four ceiling cameras can see a center marker. One camera can see the marker that serves as the origin. The position of any marker seen by atleast one camera can be transformed into the world frame.
 
