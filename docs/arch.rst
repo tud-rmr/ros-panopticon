@@ -67,13 +67,13 @@ Subscribed topics
 
 The following section lists the topics subscribed and published. These are only the topics of this very package. Topics from ``ar_sys`` and ``usb_cam`` are omitted, see their respective documentations.
 
-``camera0/transform``
+``camera0/transform`` (geometry_msgs/TransformStamped)
 	The transform from the first camera to each detected marker.
-``camera1/transform``
+``camera1/transform`` (geometry_msgs/TransformStamped)
 	The transform from the second camera to each detected marker.
-``camera2/transform``
+``camera2/transform`` (geometry_msgs/TransformStamped)
 	The transform from the third camera to each detected marker.
-``camera3/transform``
+``camera3/transform`` (geometry_msgs/TransformStamped)
 	The transform from the fourth camera to each detected marker.
 
 Published topics
@@ -81,13 +81,13 @@ Published topics
 
 For every marker listed in the board configuration file that is also detected, panopticon publishes the raw position in world coordinate for every camera. As every marker can potentially be seen by four cameras, each marker used has four accompanying topics.
 
-``pose/marker$(markerId)/cam0``
+``pose/marker$(markerId)/cam0`` (geometry_msgs/PoseWithCovarianceStamped)
 	The pose of marker *$(markerId)* detected by cam0 in world coordinates.
-``pose/marker$(markerId)/cam1``
+``pose/marker$(markerId)/cam1`` (geometry_msgs/PoseWithCovarianceStamped)
 	The pose of marker *$(markerId)* detected by cam1 in world coordinates.
-``pose/marker$(markerId)/cam2``
+``pose/marker$(markerId)/cam2`` (geometry_msgs/PoseWithCovarianceStamped)
 	The pose of marker *$(markerId)* detected by cam2 in world coordinates.
-``pose/marker$(markerId)/cam3``
+``pose/marker$(markerId)/cam3`` (geometry_msgs/PoseWithCovarianceStamped)
 	The pose of marker *$(markerId)* detected by cam3 in world coordinates.
 
 

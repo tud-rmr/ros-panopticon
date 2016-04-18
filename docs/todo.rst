@@ -15,6 +15,11 @@ Data fusion
 
 Right now, for every marker of interest, the system returns at most four estimated positions (depends on how many cameras see the marker). To make it more accurate and useful, this information has to be merged into one. There are many different approaches, from ad-hoc trial-and-error to dedicated ROS packages, like `robot_localization`_ . A launch file for that has already been started, some work is missing there. Another idea is to write a custom node that weights a (moving) average with the time of the positions and the distance to the corners.
 
+Covariance
+----------
+
+It was planned to use ``robot_localization`` as the data fusion package of choice. As it requires information about the covariance, ``panopticon`` publishes ``geometry_msgs/PoseWithCovarianceStamped`` messages. Right now, the covariance is fixed. In order to make it more reasonable, it has to be computed somehow instead of fixing it.
+
 Calibration
 -----------
 
