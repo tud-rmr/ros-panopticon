@@ -4,7 +4,7 @@ Installing
 The following chapter describes the steps necessary to install this package.
 
 Installing dependencies
-------------
+-----------------------
 
 This package requires two external ROS packages, *ar_sys* and *usb_cam*. These have binary distributions in Ubuntu and can be installed via::
 

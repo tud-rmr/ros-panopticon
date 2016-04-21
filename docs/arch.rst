@@ -6,7 +6,7 @@ Architecture
 Frames
 ------
 
-This section describes the differnt coordinate systems used. There are two special marker, ``map`` and ``center``. ``map`` is the origin of the global frame (0,0), ``center`` has the property to be seen by all cameras. Every camera has its own frame, as do the ``center`` and ``map``.
+This section describes the different coordinate systems used. There are two special marker, ``map`` and ``center``. ``map`` is the origin of the global frame (0,0), ``center`` has the property to be seen by all cameras. Every camera has its own frame, as do the ``center`` and ``map``.
 
 .. figure:: images/tf_frames.svg
     :align: center

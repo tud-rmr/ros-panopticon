@@ -1,10 +1,10 @@
 ToDo
-==========
+====
 
 Camera mount point
 ------------------
 
-At the moment, the cameras are not mounted to a fixed device adress. In order to make sure that the origin is always in the same camera, fix the mount by udev rules. A guide for that can be found in `libuvc_camera`_ . The device ID of the cameras can be found by the following neat snippet: ::
+At the moment, the cameras are not mounted to a fixed device address. In order to make sure that the origin is always in the same camera, fix the mount by udev rules. A guide for that can be found in `libuvc_camera`_ . The device ID of the cameras can be found by the following neat snippet: ::
 	
 	sudo lsusb -v -d 046d:082c | grep -i serial
 

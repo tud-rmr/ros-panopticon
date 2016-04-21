@@ -16,7 +16,7 @@ Make sure that the ``map`` marker can be seen by ``usb_cam0``. Make sure that th
 Configuration
 -------------
 
-``usb_cam`` and ``ar_sys`` can be heavily configured. See their respective docmentations and change the launch files under **launch** as your require.
+``usb_cam`` and ``ar_sys`` can be heavily configured. See their respective documentations and change the launch files under **launch** as your require.
 
 Adding markers
 --------------
