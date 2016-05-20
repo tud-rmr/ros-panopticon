@@ -6,6 +6,10 @@
 	<arg name="c3" default="2" doc="Third camera id"/> 
 	<arg name="c4" default="3" doc="Fourth camera id"/> 
 
+	<!-- First set camera settings -->
+
+        <node ns="set" pkg="panopticon" name="cam_setting" type="camera_setting.sh"/>
+
 	<!-- Start cameras -->
 
 	<include file="$(find panopticon)/launch/usb_cam_by_id.xml">
