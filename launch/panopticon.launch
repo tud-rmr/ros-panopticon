@@ -1,0 +1,54 @@
+<launch>
+	<!-- Cameras are given by a fixed device id, that is /dev/camera$(id) -->
+
+	<arg name="c0" default="0" doc="First camera id"/>
+	<arg name="c1" default="1" doc="Second camera id"/>
+	<arg name="c2" default="2" doc="Third camera id"/>
+	<arg name="c3" default="3" doc="Fourth camera id"/>
+
+	<!-- First set camera settings -->
+
+  <!--node ns="set" pkg="panopticon" name="cam_setting" type="camera_setting.sh"/-->
+
+	<!-- Start cameras -->
+	<!--include file="$(find tud_momana)/launch/panopticon/camera_by_id.launch">
+		<arg name="camera_id" value="$(arg c0)" />
+	</include-->
+
+	<!--include file="$(find tud_momana)/launch/panopticon/camera_by_id.launch">
+		<arg name="camera_id" value="$(arg c1)" />
+	</include-->
+
+	<include file="$(find tud_momana)/launch/panopticon/camera_by_id.launch">
+		<arg name="camera_id" value="$(arg c2)" />
+	</include>
+
+	<include file="$(find tud_momana)/launch/panopticon/camera_by_id.launch">
+		<arg name="camera_id" value="$(arg c3)" />
+	</include>
+
+	<!-- Start main node -->
+
+	<!--node pkg="panopticon" type="panopticon_node" name="panopticon" output="screen" /-->
+
+	<!-- Start ar_sys nodes -->
+
+	<!--include file="$(find tud_momana)/launch/ar_sys_multi.launch">
+		<arg name="camera_id" value="$(arg c0)" />
+	</include-->
+
+	<!--include file="$(find tud_momana)/launch/ar_sys_multi.launch">
+		<arg name="camera_id" value="$(arg c1)" />
+	</include-->
+
+	<include file="$(find tud_momana)/launch/panopticon/ar_sys_multi.launch">
+		<arg name="camera_id" value="$(arg c2)" />
+	</include>
+
+	<include file="$(find tud_momana)/launch/panopticon/ar_sys_multi.launch">
+		<arg name="camera_id" value="$(arg c3)" />
+	</include>
+
+	<!-- Start robot_localization nodes -->
+
+</launch>

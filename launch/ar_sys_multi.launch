@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+	<arg name="camera_id" default="0"/>
+
+	<node pkg="ar_sys" type="multi_boards" name="ar_multi_boards$(arg camera_id)" ns="camera$(arg camera_id)" output="screen" >
+		<remap from="/camera_info" to="/camera$(arg camera_id)/camera_info" />
+		<remap from="/image" to="/camera$(arg camera_id)/image_rect" />
+		<param name="image_is_rectified" type="bool" value="true"/>
+		<param name="boards_config" type="string" value="$(find tud_momana)/markers/aruco/ground_robots/boards.yml"/>
+		<param name="boards_directory" type="string" value="$(find tud_momana)/markers/aruco/ground_robots"/>
+		<param name="draw_markers" type="bool" value="true" />
+		<param name="draw_markers_cube" type="bool" value="true" />
+		<param name="draw_markers_axis" type="bool" value="true" />
+		<param name="publish_tf" type="bool" value="false"/>
+	</node>
+</launch>
