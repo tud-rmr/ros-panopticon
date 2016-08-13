@@ -16,10 +16,10 @@ PanopticonPoser::PanopticonPoser(ros::NodeHandle _nh) {
   subPoseCam2.subscribe(nh, "camera2/transform", 10);
   subPoseCam3.subscribe(nh, "camera3/transform", 10);
 
-  tfFilterPoseCam0 = new tf::MessageFilter<geometry_msgs::TransformStamped>(subPoseCam0, tfListener, "usb_cam0", 10);
-  tfFilterPoseCam1 = new tf::MessageFilter<geometry_msgs::TransformStamped>(subPoseCam1, tfListener, "usb_cam1", 10);
-  tfFilterPoseCam2 = new tf::MessageFilter<geometry_msgs::TransformStamped>(subPoseCam2, tfListener, "usb_cam2", 10);
-  tfFilterPoseCam3 = new tf::MessageFilter<geometry_msgs::TransformStamped>(subPoseCam3, tfListener, "usb_cam3", 10);
+  tfFilterPoseCam0 = new tf::MessageFilter<geometry_msgs::TransformStamped>(subPoseCam0, tfListener, "camera0", 10);
+  tfFilterPoseCam1 = new tf::MessageFilter<geometry_msgs::TransformStamped>(subPoseCam1, tfListener, "camera1", 10);
+  tfFilterPoseCam2 = new tf::MessageFilter<geometry_msgs::TransformStamped>(subPoseCam2, tfListener, "camera2", 10);
+  tfFilterPoseCam3 = new tf::MessageFilter<geometry_msgs::TransformStamped>(subPoseCam3, tfListener, "camera3", 10);
 
   tfFilterPoseCam0->registerCallback(&PanopticonPoser::cameraPoseCallback0, this);
   tfFilterPoseCam1->registerCallback(&PanopticonPoser::cameraPoseCallback1, this);
@@ -39,7 +39,7 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
   string parentName = msg->header.frame_id;
 
 
-  if (boost::starts_with(frameName, "marker")) {
+  //if (boost::starts_with(frameName, "marker")) {
     try{
       tf::Transform transform;
       transformMsgToTF(msg->transform, transform);
@@ -68,14 +68,14 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
 
       RawPosePublisher rawPub = posePublishers[frameName];
 
-      if(camId == "usb_cam0") {
-        rawPub.pubPoseCam0.publish(poseWorldWithCov);    
-      } else if(camId == "usb_cam1") {
-        rawPub.pubPoseCam1.publish(poseWorldWithCov);    
-      } else if(camId == "usb_cam2") {
-        rawPub.pubPoseCam2.publish(poseWorldWithCov);    
-      } else if(camId == "usb_cam3") {
-        rawPub.pubPoseCam3.publish(poseWorldWithCov);    
+      if(camId == "camera0") {
+        rawPub.pubPoseCam0.publish(poseInWorld);
+      } else if(camId == "camera1") {
+        rawPub.pubPoseCam1.publish(poseInWorld);
+      } else if(camId == "camera2") {
+        rawPub.pubPoseCam2.publish(poseInWorld);
+      } else if(camId == "camera3") {
+        rawPub.pubPoseCam3.publish(poseInWorld);
       } else {
         ROS_ERROR("Invalid Camera Id: %s", camId.c_str());
       }
@@ -83,23 +83,22 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
     } catch (tf::TransformException ex) {
       ROS_ERROR("%s",ex.what());
     }
-  }
 }
 
 void PanopticonPoser::cameraPoseCallback0(const geometry_msgs::TransformStamped::ConstPtr& msg) {
-  cameraPoseCallbackWithCamId(msg, "usb_cam0");
+  cameraPoseCallbackWithCamId(msg, "camera0");
 }
 
 void PanopticonPoser::cameraPoseCallback1(const geometry_msgs::TransformStamped::ConstPtr& msg) {
-  cameraPoseCallbackWithCamId(msg, "usb_cam1");
+  cameraPoseCallbackWithCamId(msg, "camera1");
 }
 
 void PanopticonPoser::cameraPoseCallback2(const geometry_msgs::TransformStamped::ConstPtr& msg) {
-  cameraPoseCallbackWithCamId(msg, "usb_cam2");
+  cameraPoseCallbackWithCamId(msg, "camera2");
 }
 
 void PanopticonPoser::cameraPoseCallback3(const geometry_msgs::TransformStamped::ConstPtr& msg) {
-  cameraPoseCallbackWithCamId(msg, "usb_cam3");
+  cameraPoseCallbackWithCamId(msg, "camera3");
 }
 
 geometry_msgs::PoseWithCovarianceStamped 

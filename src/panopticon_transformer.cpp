@@ -11,7 +11,7 @@ namespace rmr {
 PanopticonTransformer::PanopticonTransformer(ros::NodeHandle _nh) {
   nh = _nh;
 
-  frameContainingMap = "usb_cam0";
+  frameContainingMap = "camera2";
 
   subTransformCam0 = nh.subscribe("camera0/transform", 1000, &PanopticonTransformer::cameraTransformCallback, this);
   subTransformCam1 = nh.subscribe("camera1/transform", 1000, &PanopticonTransformer::cameraTransformCallback, this);

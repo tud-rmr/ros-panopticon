@@ -24,10 +24,10 @@ struct RawPosePublisher {
   RawPosePublisher() {}
 
   RawPosePublisher(ros::NodeHandle &nh, std::string markerName) {
-    pubPoseCam0 = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("pose/" + markerName + "/cam0", 1000);
-    pubPoseCam1 = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("pose/" + markerName + "/cam1", 1000);
-    pubPoseCam2 = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("pose/" + markerName + "/cam2", 1000);
-    pubPoseCam3 = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("pose/" + markerName + "/cam3", 1000);  
+    pubPoseCam0 = nh.advertise<geometry_msgs::PoseStamped>("pose/" + markerName + "/cam0", 1000);
+    pubPoseCam1 = nh.advertise<geometry_msgs::PoseStamped>("pose/" + markerName + "/cam1", 1000);
+    pubPoseCam2 = nh.advertise<geometry_msgs::PoseStamped>("pose/" + markerName + "/cam2", 1000);
+    pubPoseCam3 = nh.advertise<geometry_msgs::PoseStamped>("pose/" + markerName + "/cam3", 1000);
   }
 };
 

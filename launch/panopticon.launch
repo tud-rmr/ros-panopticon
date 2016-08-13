@@ -11,41 +11,41 @@
   <!--node ns="set" pkg="panopticon" name="cam_setting" type="camera_setting.sh"/-->
 
 	<!-- Start cameras -->
-	<!--include file="$(find tud_momana)/launch/panopticon/camera_by_id.launch">
+  <!--include file="$(find panopticon)/launch/panopticon/camera_by_id.launch">
 		<arg name="camera_id" value="$(arg c0)" />
 	</include-->
 
-	<!--include file="$(find tud_momana)/launch/panopticon/camera_by_id.launch">
+  <!--include file="$(find panopticon)/launch/panopticon/camera_by_id.launch">
 		<arg name="camera_id" value="$(arg c1)" />
 	</include-->
 
-	<include file="$(find tud_momana)/launch/panopticon/camera_by_id.launch">
+  <include file="$(find panopticon)/launch/camera_by_id.launch">
 		<arg name="camera_id" value="$(arg c2)" />
 	</include>
 
-	<include file="$(find tud_momana)/launch/panopticon/camera_by_id.launch">
+  <include file="$(find panopticon)/launch/camera_by_id.launch">
 		<arg name="camera_id" value="$(arg c3)" />
 	</include>
 
 	<!-- Start main node -->
 
-	<!--node pkg="panopticon" type="panopticon_node" name="panopticon" output="screen" /-->
+  <node pkg="panopticon" type="panopticon_node" name="panopticon" output="screen"/>
 
 	<!-- Start ar_sys nodes -->
 
-	<!--include file="$(find tud_momana)/launch/ar_sys_multi.launch">
+  <!--include file="$(find panopticon)/launch/ar_sys_multi.launch">
 		<arg name="camera_id" value="$(arg c0)" />
 	</include-->
 
-	<!--include file="$(find tud_momana)/launch/ar_sys_multi.launch">
+  <!--include file="$(find panopticon)/launch/ar_sys_multi.launch">
 		<arg name="camera_id" value="$(arg c1)" />
 	</include-->
 
-	<include file="$(find tud_momana)/launch/panopticon/ar_sys_multi.launch">
+  <include file="$(find panopticon)/launch/ar_sys_multi.launch">
 		<arg name="camera_id" value="$(arg c2)" />
 	</include>
 
-	<include file="$(find tud_momana)/launch/panopticon/ar_sys_multi.launch">
+  <include file="$(find panopticon)/launch/ar_sys_multi.launch">
 		<arg name="camera_id" value="$(arg c3)" />
 	</include>
 
