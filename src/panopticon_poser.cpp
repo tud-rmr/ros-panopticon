@@ -40,6 +40,7 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
 
 
   //if (boost::starts_with(frameName, "marker")) {
+  if(frameName != "map" && frameName != "center"){
     try{
       tf::Transform transform;
       transformMsgToTF(msg->transform, transform);
@@ -57,13 +58,14 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
       pose.header.stamp = poseInWorld.header.stamp = ros::Time(0);
 
       tfListener.transformPose("map", pose, poseInWorld);
-      geometry_msgs::PoseWithCovarianceStamped poseWorldWithCov = poseToPoseWithCovariance(poseInWorld);
+
+      //geometry_msgs::PoseWithCovarianceStamped poseWorldWithCov = poseToPoseWithCovariance(poseInWorld);
 
       boost::unordered_map<std::string, RawPosePublisher>::iterator it = posePublishers.find(frameName);
 
       if(it == posePublishers.end()) {
         RawPosePublisher tmp = RawPosePublisher(nh, frameName);
-        posePublishers.insert(std::make_pair<std::string,RawPosePublisher>(frameName,tmp));
+        posePublishers.insert(std::pair<std::string,RawPosePublisher>(frameName,tmp));
       }
 
       RawPosePublisher rawPub = posePublishers[frameName];
@@ -83,6 +85,7 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
     } catch (tf::TransformException ex) {
       ROS_ERROR("%s",ex.what());
     }
+  }
 }
 
 void PanopticonPoser::cameraPoseCallback0(const geometry_msgs::TransformStamped::ConstPtr& msg) {

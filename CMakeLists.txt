@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(panopticon)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-parameter")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-parameter -std=c++0x")
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  std_srvs
   sensor_msgs
   message_generation
   image_proc
@@ -34,7 +35,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES panopticon
-  CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs message_runtime 
+  CATKIN_DEPENDS roscpp rospy std_msgs std_srvs sensor_msgs message_runtime
   DEPENDS system_lib
 )
 
