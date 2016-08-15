@@ -25,6 +25,9 @@ PanopticonTransformer::PanopticonTransformer(ros::NodeHandle _nh) {
   // set identity for map to cam transformations
   for(int i=0; i<4; i++){
     map_to_cam[i].setIdentity();
+    map_to_cam[i].frame_id_ = "map";
+    map_to_cam[i].child_frame_id_ = "camera"+i;
+    map_to_cam[i].stamp_ = ros::Time::now();
   }
 
   int camera_framerate;
