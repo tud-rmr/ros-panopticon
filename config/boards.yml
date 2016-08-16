@@ -2,7 +2,7 @@
 ar_sys_boards:
    - { name:'c3po_marker_top', path:"board_c3po.yml", marker_size:0.16 }
    - { name:'r2d2_marker_top', path:"board_r2d2.yml", marker_size:0.16 }
-   - { name:"map", path:"boardconfig_122.yml", marker_size:0.2 }
-   - { name:"center", path:"boardconfig_152.yml", marker_size:0.2 }
+   - { name:"map", path:"boardconfig_122.yml", marker_size:0.194 }
+   - { name:"center", path:"boardconfig_152.yml", marker_size:0.194 }
    - { name:"marker344", path:"boardconfig_344.yml", marker_size:0.2 }
    - { name:"marker591", path:"boardconfig_591.yml", marker_size:0.2 }

@@ -26,7 +26,7 @@ PanopticonTransformer::PanopticonTransformer(ros::NodeHandle _nh) {
   for(int i=0; i<4; i++){
     map_to_cam[i].setIdentity();
     map_to_cam[i].frame_id_ = "map";
-    map_to_cam[i].child_frame_id_ = "camera"+i;
+    map_to_cam[i].child_frame_id_ = "camera"+std::to_string(i);
     map_to_cam[i].stamp_ = ros::Time::now();
   }
 
@@ -64,12 +64,12 @@ void PanopticonTransformer::cameraTransformCallback(const geometry_msgs::Transfo
   //st.stamp_ = ros::Time::now();
   tf::transformStampedMsgToTF(*msg, st);
 
-  if(frameName == "map" || frameName == "center"){
-    if(frameName == "map" && parentName == frameContainingMap) {
+  if(frameName == "map" || frameName == "center" || frameName == "c3po_marker_top" || frameName == "r2d2_marker_top"){
+    if((frameName == "map" || frameName == "c3po_marker_top") && parentName == frameContainingMap) {
       //Store value in buffer
       mainCam_to_map_buffer.push_back(st);
-    } else if (frameName == "center") {
-
+    }
+    if(frameName == "center" || frameName == "r2d2_marker_top") {
       if(parentName == "camera0") {
         cam_to_center_buffer[0].push_back(st);
       } else if(parentName == "camera1"){
@@ -79,12 +79,12 @@ void PanopticonTransformer::cameraTransformCallback(const geometry_msgs::Transfo
       } else if(parentName == "camera3"){
         cam_to_center_buffer[3].push_back(st);
       }
-
       }
     }
 
   // Publish all the transformations
   for(int i=0; i<4; i++){
+    map_to_cam[i].stamp_ = ros::Time::now();
     tfBroadcaster.sendTransform(map_to_cam[i]);
   }
 
@@ -108,7 +108,7 @@ void PanopticonTransformer::calculate_fixed_tf(void){
     }else{
       cam_to_center[i].setIdentity();
     }
-    cam_to_center[i].frame_id_ = "camera"+i;
+    cam_to_center[i].frame_id_ = "camera"+std::to_string(i);
     cam_to_center[i].child_frame_id_ = "center";
     cam_to_center[i].stamp_ = ros::Time::now();
 
@@ -127,7 +127,7 @@ void PanopticonTransformer::calculate_fixed_tf(void){
       map_to_cam[i].setData(mainCam_to_map.inverse());
     }
     map_to_cam[i].frame_id_ = "map";
-    map_to_cam[i].child_frame_id_ = "camera"+i;
+    map_to_cam[i].child_frame_id_ = "camera"+std::to_string(i);
     map_to_cam[i].stamp_ = ros::Time::now();
   }
 
