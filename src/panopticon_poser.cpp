@@ -64,6 +64,7 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
 
       odomInWorld.header.frame_id = poseInWorld.header.frame_id;
       odomInWorld.header.stamp = poseInWorld.header.stamp;
+      odomInWorld.pose.pose = poseInWorld.pose;
 
       //geometry_msgs::PoseWithCovarianceStamped poseWorldWithCov = poseToPoseWithCovariance(poseInWorld);
 
