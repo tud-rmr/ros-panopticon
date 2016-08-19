@@ -47,10 +47,13 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
 
       geometry_msgs::PoseStamped pose;
       geometry_msgs::PoseStamped poseInWorld;
+      nav_msgs::Odometry odomInWorld;
 
       tf::poseTFToMsg(transform, pose.pose);
       pose.header.frame_id = msg->header.frame_id;
       pose.header.stamp = msg->header.stamp;
+
+
 
       // It is a hack here, as I did not find out how to properly do the
       // timing so that tf2 does not complain about requesting from past/future
@@ -58,6 +61,9 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
       pose.header.stamp = poseInWorld.header.stamp = ros::Time(0);
 
       tfListener.transformPose("map", pose, poseInWorld);
+
+      odomInWorld.header.frame_id = poseInWorld.header.frame_id;
+      odomInWorld.header.stamp = poseInWorld.header.stamp;
 
       //geometry_msgs::PoseWithCovarianceStamped poseWorldWithCov = poseToPoseWithCovariance(poseInWorld);
 
@@ -72,12 +78,16 @@ void PanopticonPoser::cameraPoseCallbackWithCamId(const geometry_msgs::Transform
 
       if(camId == "camera0") {
         rawPub.pubPoseCam0.publish(poseInWorld);
+        rawPub.pubOdomCam0.publish(odomInWorld);
       } else if(camId == "camera1") {
         rawPub.pubPoseCam1.publish(poseInWorld);
+        rawPub.pubOdomCam1.publish(odomInWorld);
       } else if(camId == "camera2") {
         rawPub.pubPoseCam2.publish(poseInWorld);
+        rawPub.pubOdomCam2.publish(odomInWorld);
       } else if(camId == "camera3") {
         rawPub.pubPoseCam3.publish(poseInWorld);
+        rawPub.pubOdomCam3.publish(odomInWorld);
       } else {
         ROS_ERROR("Invalid Camera Id: %s", camId.c_str());
       }

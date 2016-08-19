@@ -12,6 +12,8 @@
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <geometry_msgs/TransformStamped.h>
 
+#include <nav_msgs/Odometry.h>
+
 #include <boost/unordered_map.hpp> 
 
 namespace rmr {
@@ -21,6 +23,11 @@ struct RawPosePublisher {
   ros::Publisher pubPoseCam2;
   ros::Publisher pubPoseCam3;
 
+  ros::Publisher pubOdomCam0;
+  ros::Publisher pubOdomCam1;
+  ros::Publisher pubOdomCam2;
+  ros::Publisher pubOdomCam3;
+
   RawPosePublisher() {}
 
   RawPosePublisher(ros::NodeHandle &nh, std::string markerName) {
@@ -28,6 +35,11 @@ struct RawPosePublisher {
     pubPoseCam1 = nh.advertise<geometry_msgs::PoseStamped>("pose/" + markerName + "/cam1", 1000);
     pubPoseCam2 = nh.advertise<geometry_msgs::PoseStamped>("pose/" + markerName + "/cam2", 1000);
     pubPoseCam3 = nh.advertise<geometry_msgs::PoseStamped>("pose/" + markerName + "/cam3", 1000);
+
+    pubOdomCam0 = nh.advertise<nav_msgs::Odometry>("odom/" + markerName + "/cam0", 1000);
+    pubOdomCam1 = nh.advertise<nav_msgs::Odometry>("odom/" + markerName + "/cam1", 1000);
+    pubOdomCam2 = nh.advertise<nav_msgs::Odometry>("odom/" + markerName + "/cam2", 1000);
+    pubOdomCam3 = nh.advertise<nav_msgs::Odometry>("odom/" + markerName + "/cam3", 1000);
   }
 };
 
